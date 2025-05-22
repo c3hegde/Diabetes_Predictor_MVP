@@ -9,14 +9,16 @@ def preprocess_input(input_list, scaler):
     return scaled
 #from app.utils import preprocess_input
 
-# Load model and scaler
-
-model_path = os.path.join(os.path.dirname(__file__), '../models/logistic_model.pkl')
+# Get path to the current file (app.py)
+base_path = os.path.dirname(os.path.abspath(__file__))
+# Go up one level to root and into models/
+model_path = os.path.join(base_path, '..', 'models', 'logistic_model.pkl')
 
 with open(model_path, 'rb') as f:
-    #model = pickle.load(f)
-    model = pickle.load(open('/Diabetes_Predictor_MVP/models/logistic_model.pkl', 'rb'))
-    scaler = pickle.load(open('/Diabetes_Predictor_MVP/models/scaler.pkl', 'rb'))
+   model = pickle.load(f)
+   # Load model and scaler
+   #model = pickle.load(open('/models/logistic_model.pkl', 'rb'))
+   scaler = pickle.load(open('/models/scaler.pkl', 'rb'))
 
 st.title("🩺 Diabetes Prediction App")
 
