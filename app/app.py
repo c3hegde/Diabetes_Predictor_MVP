@@ -14,9 +14,9 @@ def preprocess_input(input_list, scaler):
 model_path = os.path.join(os.path.dirname(__file__), '../models/logistic_model.pkl')
 
 with open(model_path, 'rb') as f:
-    model = pickle.load(f)
-#model = pickle.load(open('/Diabetes_Predictor_MVP/models/logistic_model.pkl', 'rb'))
-scaler = pickle.load(open('/Diabetes_Predictor_MVP/models/scaler.pkl', 'rb'))
+    #model = pickle.load(f)
+    model = pickle.load(open('/Diabetes_Predictor_MVP/models/logistic_model.pkl', 'rb'))
+    scaler = pickle.load(open('/Diabetes_Predictor_MVP/models/scaler.pkl', 'rb'))
 
 st.title("🩺 Diabetes Prediction App")
 
