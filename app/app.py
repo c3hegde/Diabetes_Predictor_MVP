@@ -1,4 +1,4 @@
-
+import os
 import streamlit as st
 import pickle
 import numpy as np
@@ -10,7 +10,7 @@ def preprocess_input(input_list, scaler):
 #from app.utils import preprocess_input
 
 # Load model and scaler
-import os
+
 model_path = os.path.join(os.path.dirname(__file__), '../models/logistic_model.pkl')
 
 with open(model_path, 'rb') as f:
