@@ -2,7 +2,12 @@
 import streamlit as st
 import pickle
 import numpy as np
-from app.utils import preprocess_input
+
+def preprocess_input(input_list, scaler):
+    array = np.array(input_list).reshape(1, -1)
+    scaled = scaler.transform(array)
+    return scaled
+#from app.utils import preprocess_input
 
 # Load model and scaler
 model = pickle.load(open('models/logistic_model.pkl', 'rb'))
