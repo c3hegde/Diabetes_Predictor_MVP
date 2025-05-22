@@ -1,1 +1,37 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"authorship_tag":"ABX9TyNITYauE3lQqttk17pMVOEY"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"code","source":["from google.colab import drive\n","drive.mount('/content/drive')\n","\n","%cd /content/drive/MyDrive/Github/Diabetes_Predictor_MVP\n","import sys\n","sys.path.append('/content/drive/MyDrive/Computers/My Laptop/Github/Diabetes_Predictor_MVP')"],"metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"0Me4uo2jchmM","executionInfo":{"status":"ok","timestamp":1747858019560,"user_tz":240,"elapsed":515,"user":{"displayName":"Champa H","userId":"02943682311594388784"}},"outputId":"524c8edb-5c3e-4377-c786-e5e7d5bfed26"},"execution_count":18,"outputs":[{"output_type":"stream","name":"stdout","text":["Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(\"/content/drive\", force_remount=True).\n","[Errno 2] No such file or directory: '/content/drive/MyDrive/Github/Diabetes_Predictor_MVP'\n","/content\n"]}]},{"cell_type":"code","source":["#!git clone https://github.com/c3hegde/Diabetes_Predictor_MVP"],"metadata":{"id":"bmw0GdT4O30U"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["!pip install streamlit\n"],"metadata":{"collapsed":true,"id":"_67WoxqvOQuO"},"execution_count":null,"outputs":[]},{"cell_type":"code","source":["import sys\n","import os\n","\n","# Add the base directory so 'app' becomes importable\n","BASE_DIR = r\"C:\\Github\\Diabetes_Predictor_MVP\"\n","sys.path.append(BASE_DIR)\n","print(sys.path)"],"metadata":{"id":"3Piz0E84ZMwt","executionInfo":{"status":"ok","timestamp":1747857767294,"user_tz":240,"elapsed":50,"user":{"displayName":"Champa H","userId":"02943682311594388784"}},"colab":{"base_uri":"https://localhost:8080/"},"outputId":"2c0d6cf9-8ceb-418f-aec5-0b210517a111"},"execution_count":null,"outputs":[{"output_type":"stream","name":"stdout","text":["['/content', '/env/python', '/usr/lib/python311.zip', '/usr/lib/python3.11', '/usr/lib/python3.11/lib-dynload', '', '/usr/local/lib/python3.11/dist-packages', '/usr/lib/python3/dist-packages', '/usr/local/lib/python3.11/dist-packages/IPython/extensions', '/usr/local/lib/python3.11/dist-packages/setuptools/_vendor', '/root/.ipython', 'C:\\\\Github\\\\Diabetes_Predictor_MVP', 'C:\\\\Github\\\\Diabetes_Predictor_MVP', 'C:\\\\Github\\\\Diabetes_Predictor_MVP', 'C:\\\\Github\\\\Diabetes_Predictor_MVP', 'C:\\\\Github\\\\Diabetes_Predictor_MVP']\n"]}]},{"cell_type":"code","execution_count":null,"metadata":{"colab":{"base_uri":"https://localhost:8080/","height":383},"id":"fciwrZRmNyox","executionInfo":{"status":"error","timestamp":1747857772095,"user_tz":240,"elapsed":89,"user":{"displayName":"Champa H","userId":"02943682311594388784"}},"outputId":"c2964cda-4424-4e23-ae33-8364bab839fa"},"outputs":[{"output_type":"error","ename":"ModuleNotFoundError","evalue":"No module named 'app'","traceback":["\u001b[0;31m---------------------------------------------------------------------------\u001b[0m","\u001b[0;31mModuleNotFoundError\u001b[0m                       Traceback (most recent call last)","\u001b[0;32m<ipython-input-14-68e47817ca06>\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mpickle\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mnumpy\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0mnp\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 4\u001b[0;31m \u001b[0;32mfrom\u001b[0m \u001b[0mapp\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mconfig\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      5\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0mapp\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mutils\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mpreprocess_input\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      6\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n","\u001b[0;31mModuleNotFoundError\u001b[0m: No module named 'app'","","\u001b[0;31m---------------------------------------------------------------------------\u001b[0;32m\nNOTE: If your import is failing due to a missing package, you can\nmanually install dependencies using either !pip or !apt.\n\nTo view examples of installing some common dependencies, click the\n\"Open Examples\" button below.\n\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n"],"errorDetails":{"actions":[{"action":"open_url","actionText":"Open Examples","url":"/notebooks/snippets/importing_libraries.ipynb"}]}}],"source":["import streamlit as st\n","import pickle\n","import numpy as np\n","from app import config\n","from app.utils import preprocess_input\n","\n","# Load model and scaler\n","model = pickle.load(open('models/logistic_model.pkl', 'rb'))\n","scaler = pickle.load(open('models/scaler.pkl', 'rb'))\n","\n","st.title(\"🩺 Diabetes Prediction App\")\n","\n","st.markdown(\"\"\"\n","Enter the following medical attributes to assess the likelihood of diabetes:\n","\"\"\")\n","\n","# Input fields\n","pregnancies = st.number_input('Pregnancies', min_value=0, max_value=20, value=1)\n","glucose = st.slider('Glucose Level', 0, 200, 120)\n","blood_pressure = st.slider('Blood Pressure', 0, 122, 70)\n","skin_thickness = st.slider('Skin Thickness', 0, 100, 20)\n","insulin = st.slider('Insulin Level', 0, 846, 79)\n","bmi = st.number_input('BMI', min_value=0.0, max_value=70.0, value=25.0)\n","diabetes_pedigree = st.number_input('Diabetes Pedigree Function', 0.0, 2.5, 0.5)\n","age = st.slider('Age', 10, 100, 33)\n","\n","if st.button('Predict'):\n","    input_data = preprocess_input([pregnancies, glucose, blood_pressure,\n","                                   skin_thickness, insulin, bmi,\n","                                   diabetes_pedigree, age], scaler)\n","    prediction = model.predict(input_data)[0]\n","    prob = model.predict_proba(input_data)[0][1]\n","\n","    if prediction == 1:\n","        st.error(f\"🚨 High risk of diabetes (probability: {prob:.2f})\")\n","    else:\n","        st.success(f\"✅ Low risk of diabetes (probability: {prob:.2f})\")"]}]}
+
+import streamlit as st
+import pickle
+import numpy as np
+from app.utils import preprocess_input
+
+# Load model and scaler
+model = pickle.load(open('models/logistic_model.pkl', 'rb'))
+scaler = pickle.load(open('models/scaler.pkl', 'rb'))
+
+st.title("🩺 Diabetes Prediction App")
+
+st.markdown("""
+Enter the following medical attributes to assess the likelihood of diabetes:
+""")
+
+# Input fields
+pregnancies = st.number_input('Pregnancies', min_value=0, max_value=20, value=1)
+glucose = st.slider('Glucose Level', 0, 200, 120)
+blood_pressure = st.slider('Blood Pressure', 0, 122, 70)
+skin_thickness = st.slider('Skin Thickness', 0, 100, 20)
+insulin = st.slider('Insulin Level', 0, 846, 79)
+bmi = st.number_input('BMI', min_value=0.0, max_value=70.0, value=25.0)
+diabetes_pedigree = st.number_input('Diabetes Pedigree Function', 0.0, 2.5, 0.5)
+age = st.slider('Age', 10, 100, 33)
+
+if st.button('Predict'):
+    input_data = preprocess_input([pregnancies, glucose, blood_pressure,
+                                   skin_thickness, insulin, bmi,
+                                   diabetes_pedigree, age], scaler)
+    prediction = model.predict(input_data)[0]
+    prob = model.predict_proba(input_data)[0][1]
+
+    if prediction == 1:
+        st.error(f"🚨 High risk of diabetes (probability: {prob:.2f})")
+    else:
+        st.success(f"✅ Low risk of diabetes (probability: {prob:.2f})")

@@ -1,1 +1,6 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"authorship_tag":"ABX9TyMMpgVyaWo1dGflvWINPc49"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"code","execution_count":2,"metadata":{"id":"Sor7FgMTPwb0","executionInfo":{"status":"ok","timestamp":1747854824414,"user_tz":240,"elapsed":8,"user":{"displayName":"Champa H","userId":"02943682311594388784"}}},"outputs":[],"source":["import numpy as np\n","\n","def preprocess_input(input_list, scaler):\n","    array = np.array(input_list).reshape(1, -1)\n","    scaled = scaler.transform(array)\n","    return scaled"]}]}
+import numpy as np
+
+def preprocess_input(input_list, scaler):
+    array = np.array(input_list).reshape(1, -1)
+    scaled = scaler.transform(array)
+    return scaled
