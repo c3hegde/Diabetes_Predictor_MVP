@@ -11,11 +11,20 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 import os
 
+# Get path to the current file (prefect_flow.py)
+base_path = os.path.dirname(os.path.abspath(__file__))
+print (base_path)
+# Full path to the data file
+DATA_PATH = os.path.join(base_path, '..','data', 'raw', 'diabetes.csv')
+MODEL_PATH = os.path.join(base_path, '..','models', 'logistic_model.pkl')
+SCALER_PATH = os.path.join(base_path,'..', 'models', 'scaler.pkl')
+# Use the full path to read the file
+#with open(data_path, 'r') as f:
 
-# Configurable paths
-DATA_PATH = 'data/raw/diabetes.csv'
-MODEL_PATH = 'models/logistic_model.pkl'
-SCALER_PATH = 'models/scaler.pkl'
+#DATA_PATH = "data/raw/diabetes.csv"
+#MODEL_PATH = "models/logistic_model.pkl"
+#SCALER_PATH = "models/scaler.pkl"
+
 
 
 @task(name="Load Dataset", retries=2, retry_delay_seconds=5, cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))

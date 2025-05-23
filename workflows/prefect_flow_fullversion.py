@@ -12,7 +12,6 @@
 #prefect agent start
 
 
-
 from prefect import flow, task
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -22,7 +21,20 @@ from sklearn.cluster import KMeans
 import pickle
 import os
 
-DATA_PATH = "data/raw/diabetes.csv"
+# Get path to the current file (prefect_flow.py)
+base_path = os.path.dirname(os.path.abspath(__file__))
+print (base_path)
+# Full path to the data file
+DATA_PATH = os.path.join(base_path, '..','data', 'raw', 'diabetes.csv')
+MODEL_PATH = os.path.join(base_path, '..','models', 'logistic_model.pkl')
+SCALER_PATH = os.path.join(base_path,'..', 'models', 'scaler.pkl')
+# Use the full path to read the file
+#with open(data_path, 'r') as f:
+
+#DATA_PATH = "data/raw/diabetes.csv"
+#MODEL_PATH = "models/logistic_model.pkl"
+#SCALER_PATH = "models/scaler.pkl"
+
 MODEL_DIR = "models"
 os.makedirs(MODEL_DIR, exist_ok=True)
 
