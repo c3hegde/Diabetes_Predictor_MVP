@@ -32,7 +32,7 @@ diabetes-predictor-ai-mvp/
 - ├── models/             # Trained models (pkl)
 - ├── workflows/          # Prefect orchestration
 
-##Potential Future Enhancements
+## Potential Future Enhancements
 - Host on AWS with Lambda or EC2
 - Incorporate medical notes using LLM + RAG
 - Add drift detection and retraining triggers
